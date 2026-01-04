@@ -11,8 +11,8 @@ A small, testable command-line Tic-Tac-Toe in Python with a clean game loop, a s
 - `python3 -m tic_tac_toe --human-vs-human`
 
 # Tests
-- `pytest`
-- `pytest --cov=tic_tac_toe --cov-report=term-missing`
+- `python3 -m pytest`
+- `python3 -m pytest --cov=tic_tac_toe --cov-report=term-missing`
 
 # Lint/Format
 - `ruff check .` (lint)

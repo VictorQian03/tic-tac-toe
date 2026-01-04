@@ -1,10 +1,8 @@
-from typing import List
-
 from tic_tac_toe.game import play_game
 
 
 def test_game_alternates_turns_and_stops_on_win() -> None:
-    marks: List[str] = []
+    marks: list[str] = []
     x_moves = [1, 2, 3]
     o_moves = [4, 5]
 
@@ -19,10 +17,10 @@ def test_game_alternates_turns_and_stops_on_win() -> None:
     result = play_game(x_player, o_player)
 
     assert marks == ["X", "O", "X", "O", "X"]
-    assert result["winner"] == "X"
-    assert result["is_draw"] is False
-    assert result["moves"] == [1, 4, 2, 5, 3]
-    assert list(result["final_board"].cells) == [
+    assert result.winner == "X"
+    assert result.is_draw is False
+    assert result.moves == (1, 4, 2, 5, 3)
+    assert list(result.final_board.cells) == [
         "X",
         "X",
         "X",
@@ -47,10 +45,10 @@ def test_game_ends_on_draw() -> None:
 
     result = play_game(x_player, o_player)
 
-    assert result["winner"] is None
-    assert result["is_draw"] is True
-    assert result["moves"] == [1, 2, 3, 5, 6, 4, 8, 9, 7]
-    assert list(result["final_board"].cells) == [
+    assert result.winner is None
+    assert result.is_draw is True
+    assert result.moves == (1, 2, 3, 5, 6, 4, 8, 9, 7)
+    assert list(result.final_board.cells) == [
         "X",
         "O",
         "X",

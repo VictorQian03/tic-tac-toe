@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from dataclasses import dataclass
 from typing import Optional
 
 from .board import Board
@@ -9,9 +10,17 @@ from .rules import check_winner, is_draw
 Player = Callable[[Board, str], int]
 
 
+@dataclass(frozen=True)
+class GameResult:
+    winner: Optional[str]
+    is_draw: bool
+    final_board: Board
+    moves: tuple[int, ...]
+
+
 def play_game(
     x_player: Player, o_player: Player, board: Optional[Board] = None
-) -> dict:
+) -> GameResult:
     current_board = board or Board()
     moves: list[int] = []
     players = {"X": x_player, "O": o_player}
@@ -35,10 +44,10 @@ def _result(
     is_draw_result: bool,
     final_board: Board,
     moves: list[int],
-) -> dict:
-    return {
-        "winner": winner,
-        "is_draw": is_draw_result,
-        "final_board": final_board,
-        "moves": list(moves),
-    }
+) -> GameResult:
+    return GameResult(
+        winner=winner,
+        is_draw=is_draw_result,
+        final_board=final_board,
+        moves=tuple(moves),
+    )

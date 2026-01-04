@@ -78,9 +78,9 @@ def main(argv: Iterable[str] | None = None) -> int:
     o_player = players[o_kind]
 
     result = play_game(x_player, o_player)
-    print(result["final_board"].render())
-    if result["is_draw"]:
+    print(result.final_board.render())
+    if result.is_draw:
         print("Draw")
     else:
-        print(f"{result['winner']} wins")
+        print(f"{result.winner} wins")
     return 0
