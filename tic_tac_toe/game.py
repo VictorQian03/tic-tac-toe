@@ -9,7 +9,9 @@ from .rules import check_winner, is_draw
 Player = Callable[[Board, str], int]
 
 
-def play_game(x_player: Player, o_player: Player, board: Optional[Board] = None) -> dict:
+def play_game(
+    x_player: Player, o_player: Player, board: Optional[Board] = None
+) -> dict:
     current_board = board or Board()
     moves: list[int] = []
     players = {"X": x_player, "O": o_player}

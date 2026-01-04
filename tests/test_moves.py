@@ -15,7 +15,7 @@ def test_apply_move_out_of_range(position: int) -> None:
 def test_apply_move_non_digit(position: str) -> None:
     board = Board()
     with pytest.raises(ValueError):
-        board.apply_move(position, "X") 
+        board.apply_move(position, "X")
 
 
 def test_apply_move_occupied_cell() -> None:

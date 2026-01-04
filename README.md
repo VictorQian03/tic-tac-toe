@@ -1,9 +1,10 @@
 # Plan
-Build a small, testable command-line Tic-Tac-Toe in Python with a clean game loop, a simple board model, and isolated validation/win logic to keep tests straightforward.
+A small, testable command-line Tic-Tac-Toe in Python with a clean game loop, a simple board model, and isolated validation/win logic to keep tests straightforward.
 
-# Scope
-In: CLI 3x3 grid display, human/bot turns, move validation, win/draw detection, and test coverage for core rules.
-Out: GUI, networking, persistence, or advanced AI beyond a basic bot.
+# Installation
+- `uv venv`
+- `source .venv/bin/activate`
+- `uv pip install -e '.[dev]'`
 
 # Run
 - `python3 -m tic_tac_toe`
@@ -11,6 +12,11 @@ Out: GUI, networking, persistence, or advanced AI beyond a basic bot.
 
 # Tests
 - `pytest`
+- `pytest --cov=tic_tac_toe --cov-report=term-missing`
+
+# Lint/Format
+- `ruff check .` (lint)
+- `ruff format --check .` (format)
 
 # Example session
 ```

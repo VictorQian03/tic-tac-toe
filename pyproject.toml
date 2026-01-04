@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tic-tac-toe"
+version = "0.1.0"
+description = "Command-line tic-tac-toe with a simple bot."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "ruff",
+]
+
+[project.scripts]
+tic-tac-toe = "tic_tac_toe.cli:main"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tic_tac_toe*"]
