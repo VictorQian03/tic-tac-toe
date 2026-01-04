@@ -55,13 +55,21 @@ X wins
 
 # Action items
 [x] Sketch minimal module layout and define public functions/classes for board state and move application.
+
 [x] Implement board representation and rendering for a 3x3 grid with 1–9 positions.
+
 [x] Add move parsing/validation to reject invalid characters, out-of-range inputs, and occupied cells.
+
 [x] Implement win/draw detection for rows, columns, diagonals, and full-board draw.
+
 [x] Add player loop that alternates X/O and supports human vs bot or human vs human play (no bot vs bot). The bot should always play the optimal move (or one of them) in any board scenario.
+
 [x] Write pytest unit tests for win conditions, draw detection, and invalid move handling.
+
 [x] Add tests for bot move legality and mixed human/bot turn flow.
+
 [x] Implement CLI entrypoint with human input handling and bot responses.
+
 [x] Verify CLI behavior manually with a few sample games and document run/test commands.
 
 # Progress
