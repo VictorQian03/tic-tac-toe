@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Optional, Protocol, Sequence, runtime_checkable
 
 WINNING_LINES = (
     (0, 1, 2),
@@ -14,7 +14,16 @@ WINNING_LINES = (
 )
 
 
-def check_winner(cells_or_board: Iterable[Optional[str]]) -> Optional[str]:
+@runtime_checkable
+class SupportsCells(Protocol):
+    @property
+    def cells(self) -> Sequence[Optional[str]]: ...
+
+
+CellsInput = Sequence[Optional[str]] | SupportsCells
+
+
+def check_winner(cells_or_board: CellsInput) -> Optional[str]:
     cells = _coerce_cells(cells_or_board)
     for a, b, c in WINNING_LINES:
         mark = cells[a]
@@ -23,14 +32,14 @@ def check_winner(cells_or_board: Iterable[Optional[str]]) -> Optional[str]:
     return None
 
 
-def is_draw(cells_or_board: Iterable[Optional[str]]) -> bool:
+def is_draw(cells_or_board: CellsInput) -> bool:
     cells = _coerce_cells(cells_or_board)
     return check_winner(cells) is None and all(cell is not None for cell in cells)
 
 
-def _coerce_cells(cells_or_board: Iterable[Optional[str]]) -> list[Optional[str]]:
-    if hasattr(cells_or_board, "cells"):
-        cells = getattr(cells_or_board, "cells")
+def _coerce_cells(cells_or_board: CellsInput) -> list[Optional[str]]:
+    if isinstance(cells_or_board, SupportsCells):
+        cells = cells_or_board.cells
     else:
         cells = cells_or_board
 

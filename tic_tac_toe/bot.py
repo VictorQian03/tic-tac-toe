@@ -8,10 +8,10 @@ from .rules import check_winner, is_draw
 VALID_MARKS = ("X", "O")
 
 
-def choose_move(board: Board, mark: str, opponent_mark: Optional[str] = None) -> int:
+def choose_move(board: Board, mark: str) -> int:
     """Return the optimal move for mark using a deterministic tie-breaker."""
     _validate_mark(mark)
-    opponent = _resolve_opponent(mark, opponent_mark)
+    opponent = "O" if mark == "X" else "X"
 
     if check_winner(board) is not None or is_draw(board):
         raise ValueError("No moves available on a terminal board.")
@@ -48,12 +48,3 @@ def _negamax(board: Board, mark: str) -> int:
 def _validate_mark(mark: str) -> None:
     if mark not in VALID_MARKS:
         raise ValueError("Mark must be 'X' or 'O'.")
-
-
-def _resolve_opponent(mark: str, opponent_mark: Optional[str]) -> str:
-    if opponent_mark is None:
-        return "O" if mark == "X" else "X"
-    if opponent_mark == mark:
-        raise ValueError("Opponent mark must differ from player mark.")
-    _validate_mark(opponent_mark)
-    return opponent_mark
